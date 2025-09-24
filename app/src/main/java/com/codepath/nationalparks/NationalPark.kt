@@ -4,9 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 /**
  * The Model for storing a single park from the National Parks API.
- *
- * SerializedName tags MUST match the JSON response for the
- * object to correctly parse with the gson library.
  */
 class NationalPark {
 
@@ -25,8 +22,16 @@ class NationalPark {
     @SerializedName("states")
     var location: String? = null
 
-    //TODO parkImageUrl
+    // List of images from the API
+    @SerializedName("images")
+    var images: List<Image>? = null
 
+    // Convenience property to get the first image URL
+    val imageUrl: String? get() = images?.firstOrNull()?.url
 
-    //TODO-STRETCH-GOALS
+    // Inner class representing a single image object
+    class Image {
+        @SerializedName("url")
+        var url: String? = null
+    }
 }
